@@ -18,6 +18,13 @@ get '/' do
   effigy :index
 end
 
+get '/jobs/new' do
+  effigy :new
+end
+
+# post '/jobs' do
+# end
+
 get '/jobs/:id' do |id|
   effigy :job, Job.find(id)
 end
