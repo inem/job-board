@@ -5,10 +5,6 @@ require 'sinatra/mongoid'
 
 set :mongo_db, 'job-board'
 
-configure :production do
-  set :mongo_host, 'db.mongohq.com'
-end
-
 class Job
   include Mongoid::Document
   field :position
