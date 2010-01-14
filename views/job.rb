@@ -1,8 +1,8 @@
 class JobView < Effigy::View
   attr_reader :job
 
-  def initialize(*locals)
-    @job = locals.flatten.first
+  def initialize(job)
+    @job = job
   end
 
   def transform
