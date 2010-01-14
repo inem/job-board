@@ -1,16 +1,21 @@
 require 'rubygems'
 require 'sinatra'
-require 'sinatra/mongo'
 require 'sinatra/effigy'
+require 'sinatra/mongoid'
 
-configure :development, :test do
-  set :mongo, 'mongo://localhost:27017/job-board'
-end
+set :mongo_db, 'job-board'
 
 configure :production do
-  credentials = "#{ENV['DATABASE_USER']}@#{ENV['DATABASE_PASSWORD']}"
-  set :mongo, "http://#{credentials}:amazon.mongohq.com/job-board"
-  enable :raise_errors
+  set :mongo_host, 'db.mongohq.com'
+end
+
+class Job
+  include Mongoid::Document
+  field :position
+  field :company
+  field :company_url
+  field :description
+  field :apply_at
 end
 
 get '/' do
@@ -18,6 +23,5 @@ get '/' do
 end
 
 get '/jobs/:id' do |id|
-  job = mongo['jobs'].find('id' => id)
-  effigy :job, job
+  effigy :job, Job.find(id)
 end
