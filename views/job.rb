@@ -9,6 +9,7 @@ class JobView < Effigy::View
     f('title').text("#{job.position} at #{job.company}")
     f('h1').text(job.position)
     f('h2 a').attr(:href, job.company_url).text(job.company)
+    f('h3').text(job.location)
     f('#description').html(job.description)
     f('#apply-at').text(job.apply_at)
   end
