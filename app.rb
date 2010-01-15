@@ -1,13 +1,14 @@
-require 'rubygems'
-require 'sinatra'
-require 'sinatra/effigy'
-require 'sinatra/mongoid'
+require File.dirname(__FILE__) + '/vendor/gems/environment'
+Bundler.require_env
+
+set :app_file, __FILE__
 
 set :mongo_db, 'job-board'
 
 class Job
   include Mongoid::Document
   field :position
+  field :location
   field :company
   field :company_url
   field :description
