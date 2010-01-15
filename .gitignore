@@ -1,4 +1,5 @@
 *.swp
+vendor/bundler_gems
 vendor/gems/gems
 vendor/gems/specifications
 vendor/gems/doc
